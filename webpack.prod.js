@@ -126,6 +126,15 @@ module.exports = {
         caseSensitive: true,
       },
     }),
+    new HtmlWebpackPlugin({
+      filename: '404.html',
+      template: paths.INDEX,
+      minify: {
+        collapseWhitespace: true,
+        conservativeCollapse: false,
+        caseSensitive: true,
+      },
+    }),
     new FaviconsWebpackPlugin(paths.FAVICON),
   ],
 };
