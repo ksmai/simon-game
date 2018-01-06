@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { ReplaySubject } from 'rxjs/ReplaySubject';
 import 'rxjs/add/observable/combineLatest';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/delay';
@@ -18,7 +19,7 @@ export class GameService {
   private hasWon$: BehaviorSubject<boolean>;
   private isOn$: BehaviorSubject<boolean>;
   private isStrictMode$: BehaviorSubject<boolean>;
-  private displayedColor$: BehaviorSubject<Color | null>;
+  private displayedColor$: ReplaySubject<Color | null>;
   private currentSequence$: BehaviorSubject<Color[]>;
   private currentGuesses: Color[];
 
@@ -27,7 +28,9 @@ export class GameService {
     this.hasWon$ = new BehaviorSubject<boolean>(this.game.hasWon());
     this.isOn$ = new BehaviorSubject<boolean>(false);
     this.isStrictMode$ = new BehaviorSubject<boolean>(false);
-    this.displayedColor$ = new BehaviorSubject<Color | null>(null);
+    this.displayedColor$ = new ReplaySubject<Color | null>(2);
+    this.displayedColor$.next(null);
+    this.displayedColor$.next(null);
     this.currentSequence$ = new BehaviorSubject<Color[]>(this.game.sequence);
   }
 

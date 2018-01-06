@@ -38,7 +38,9 @@ export class ControllerComponent implements OnInit, OnDestroy {
   }
 
   toggleOn(): void {
-    this.gameService.toggleOn();
+    if (this.canReset) {
+      this.gameService.toggleOn();
+    }
   }
 
   toggleStrict(): void {
@@ -48,7 +50,6 @@ export class ControllerComponent implements OnInit, OnDestroy {
   onReset(): void {
     if (this.canReset) {
       this.gameService.resetGame();
-      this.canReset = false;
     }
   }
 }
