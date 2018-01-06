@@ -1,13 +1,13 @@
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
 import { Color } from '../../../models/color';
-import { ButtonComponent } from './button.component';
 import { GameService } from '../../core/game.service';
 import { SoundService } from '../../core/sound.service';
+import { ButtonComponent } from './button.component';
 
 let page: Page;
 let fixture: ComponentFixture<ButtonComponent>;
@@ -145,7 +145,7 @@ describe('ButtonComponent', () => {
 function rgbToHex(rgb: string): string {
   const matches = rgb.match(/\d+/g);
   if (matches && matches.length === 3) {
-    return '#' + matches.map(e => `0${(+e).toString(16)}`.slice(-2)).join('');
+    return '#' + matches.map((e) => `0${(+e).toString(16)}`.slice(-2)).join('');
   }
   return rgb;
 }

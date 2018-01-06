@@ -1,9 +1,9 @@
 import {
   Component,
-  Input,
-  OnInit,
-  OnDestroy,
   HostBinding,
+  Input,
+  OnDestroy,
+  OnInit,
 } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
@@ -37,7 +37,7 @@ export class ButtonComponent implements OnInit, OnDestroy {
     this.subscription.add(
       this.gameService
         .getHasWon()
-        .subscribe((hasWon: boolean) => this.hasWon = hasWon)
+        .subscribe((hasWon: boolean) => this.hasWon = hasWon),
     );
 
     this.subscription.add(
@@ -48,7 +48,7 @@ export class ButtonComponent implements OnInit, OnDestroy {
             this.playSound();
           }
           this.displayedColor = color;
-        })
+        }),
     );
   }
 

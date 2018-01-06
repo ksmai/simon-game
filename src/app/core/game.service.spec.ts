@@ -1,6 +1,6 @@
-import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/combineLatest';
 import 'rxjs/add/operator/bufferCount';
+import { Observable } from 'rxjs/Observable';
 import { GameService } from './game.service';
 
 describe('GameService', () => {

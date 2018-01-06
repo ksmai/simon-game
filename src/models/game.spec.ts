@@ -1,5 +1,5 @@
-import { Game } from './game';
 import { Color } from './color';
+import { Game } from './game';
 
 describe('Game', () => {
   let game: Game;
@@ -52,7 +52,7 @@ describe('Game', () => {
       { guess: [Color.RED, Color.BLUE], sequence: [Color.RED, Color.BLUE, Color.GREEN] },
     ];
 
-    for (let pair of guesses) {
+    for (const pair of guesses) {
       game.sequence = pair.sequence;
       const isValid = game.isValidGuess(pair.guess);
       expect(isValid).toBe(true);
@@ -66,7 +66,7 @@ describe('Game', () => {
       { guess: [Color.RED, Color.BLUE, Color.YELLOW], sequence: [Color.RED, Color.BLUE, Color.GREEN] },
     ];
 
-    for (let pair of guesses) {
+    for (const pair of guesses) {
       game.sequence = pair.sequence;
       const isValid = game.isValidGuess(pair.guess);
       expect(isValid).toBe(false);

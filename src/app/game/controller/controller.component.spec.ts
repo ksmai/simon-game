@@ -1,13 +1,13 @@
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
 import { Color } from '../../../models/color';
-import { ControllerComponent } from './controller.component';
 import { GameService } from '../../core/game.service';
 import { SoundService } from '../../core/sound.service';
+import { ControllerComponent } from './controller.component';
 
 let page: Page;
 let fixture: ComponentFixture<ControllerComponent>;

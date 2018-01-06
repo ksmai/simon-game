@@ -1,13 +1,17 @@
-import { SoundService, SOUND_MAP } from './sound.service';
 import { Color } from '../../models/color';
+import { SOUND_MAP, SoundService } from './sound.service';
 
 describe('SoundService', () => {
   let soundService: SoundService;
-  let spies: { [key: string]: { [key: number]: jasmine.Spy } }; ;
+  let spies: { [key: string]: { [key: number]: jasmine.Spy } };
   const resetSpies = () => {
     for (const key in spies) {
-      for (const color in spies[key]) {
-        spies[key][color].calls.reset();
+      if (spies.hasOwnProperty(key)) {
+        for (const color in spies[key]) {
+          if (spies[key].hasOwnProperty(color)) {
+            spies[key][color].calls.reset();
+          }
+        }
       }
     }
   };
@@ -33,9 +37,9 @@ describe('SoundService', () => {
 
   it('should play the audio', () => {
     const colors = [Color.BLUE, Color.RED, Color.GREEN, Color.YELLOW];
-    for (let color of colors) {
+    for (const color of colors) {
       soundService.play(color);
-      expect(spies['play'][color]).toHaveBeenCalledWith();
+      expect(spies.play[color]).toHaveBeenCalledWith();
       resetSpies();
     }
   });

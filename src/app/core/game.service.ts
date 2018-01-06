@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { ReplaySubject } from 'rxjs/ReplaySubject';
 import 'rxjs/add/observable/combineLatest';
 import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/delay';
 import 'rxjs/add/operator/concatMap';
+import 'rxjs/add/operator/delay';
 import 'rxjs/add/operator/pairwise';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Observable } from 'rxjs/Observable';
+import { ReplaySubject } from 'rxjs/ReplaySubject';
 
-import { Game } from '../../models/game';
 import { Color } from '../../models/color';
+import { Game } from '../../models/game';
 
 @Injectable()
 export class GameService {

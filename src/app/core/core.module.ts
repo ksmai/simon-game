@@ -1,7 +1,7 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 
-import { SoundService } from './sound.service';
 import { GameService } from './game.service';
+import { SoundService } from './sound.service';
 
 @NgModule({
   providers: [

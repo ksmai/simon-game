@@ -1,10 +1,10 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
-import 'rxjs/add/operator/map';
 
-import { GameService } from '../../core/game.service';
 import { Color } from '../../../models/color';
+import { GameService } from '../../core/game.service';
 
 @Component({
   selector: 'simon-controller',
