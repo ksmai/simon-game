@@ -1,1 +1,9 @@
-{{ test }}
+<div class="board">
+  <simon-button
+    *ngFor="let color of colors; let i=index; trackBy: trackByColor"
+    [color]="color"
+    [class]="'simon-button simon-button--' + i"
+  ></simon-button>
+
+  <simon-controller class="simon-controller"></simon-controller>
+</div>

@@ -1,0 +1,151 @@
+@import '../../../styles/colors';
+
+:host {
+  border-radius: 50%;
+  overflow: hidden;
+  display: block;
+  background-color: $board-color;
+}
+
+.controller {
+  position: absolute;
+  width: 76%;
+  height: 76%;
+  left: 12%;
+  top: 12%;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: $controller-color;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.title {
+  text-transform: uppercase;
+  color: $board-color;
+  font-size: 1.5em;
+  letter-spacing: .1em;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.score,
+.start,
+.strict {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  &__label {
+    font-size: .5em;
+    font-weight: 100;
+    text-transform: uppercase;
+  }
+}
+
+.start,
+.strict {
+  &__button {
+    border: 3px solid $board-color;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    padding: 0;
+    margin: 0;
+    outline: 0;
+    box-shadow: none;
+    margin-bottom: 5px;
+  }
+}
+
+.score {
+  &__display {
+    background-color: $board-color;
+    color: $score-color;
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-family: monospace;
+    padding: 1px 5px;
+  }
+}
+
+.start {
+  margin-left: 1em;
+  margin-right: 1em;
+
+  &__button {
+    background-color: $start-button-color;
+  }
+}
+
+.strict {
+  position: relative;
+
+  &__indicator {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background-color: $strict-indicator-color;
+    top: -7px;
+    left: 50%;
+    border-radius: 50%;
+    transform: translateX(-50%);
+  }
+
+  &__button {
+    background-color: $strict-button-color;
+  }
+
+  &__label {
+  }
+}
+
+.switch {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60%;
+
+  &__label {
+    text-transform: uppercase;
+    font-size: .7em;
+  }
+
+  &__toggle {
+    flex: 1;
+    height: .7em;
+    background-color: $board-color;
+    margin-left: .2em;
+    margin-right: .2em;
+    position: relative;
+  }
+
+  &__button {
+    position: absolute;
+    top: 10%;
+    bottom: 10%;
+    left: 5%;
+    width: 45%;
+    transition: transform .1s ease-in-out;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    outline: 0;
+    box-shadow: none;
+    background-color: $toggle-color;
+
+    &--on {
+      transform: translateX(100%);
+    }
+  }
+}

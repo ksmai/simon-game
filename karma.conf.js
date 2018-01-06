@@ -19,7 +19,7 @@ module.exports = function(config) {
     browsers: ['Chrome'],
     frameworks: ['jasmine'],
     reporters: ['progress', 'kjhtml'],
-    singleRun: true,
-    autoWatch: false,
+    singleRun: false,
+    autoWatch: true,
   });
 };

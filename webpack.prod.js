@@ -70,7 +70,7 @@ module.exports = {
       test: /(?:\.ngfactory\.js|\.ngstyle\.js|\.ts)$/,
       use: '@ngtools/webpack',
     }, {
-      test: /\.(?:gif|png|jpe?g|svg|ttf|eof|woff2?)$/,
+      test: /\.(?:gif|png|jpe?g|svg|ttf|eof|woff2?|mp3)$/,
       use: {
         loader: 'url-loader',
         options: {

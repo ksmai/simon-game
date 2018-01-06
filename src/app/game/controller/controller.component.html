@@ -1,0 +1,42 @@
+<div class="controller">
+  <h1 class="title">Simon</h1>
+
+  <div class="buttons" *ngIf="isOn$ | async">
+    <div class="score">
+      <span class="score__display">{{ score$ | async }}</span>
+      <span class="score__label">score</span>
+    </div>
+
+    <div class="start">
+      <button
+        type="button"
+        (click)="toggleStart()"
+        class="start__button"
+      ></button>
+      <span class="start__label">start</span>
+    </div>
+
+    <div class="strict">
+      <div class="strict__indicator" *ngIf="isStrictMode$ | async"></div>
+      <button
+        type="button"
+        (click)="toggleStrict()"
+        class="strict__button"
+      ></button>
+      <span class="strict__label">strict</span>
+    </div>
+  </div>
+
+  <div class="switch">
+    <span class="switch__label switch__label--off">off</span>
+    <div class="switch__toggle">
+      <button
+        type="button"
+        class="switch__button"
+        [class.switch__button--on]="isOn$ | async"
+        (click)="toggleOn()"
+      ></button>
+    </div>
+    <span class="switch__label switch__label--on">on</span>
+  </div>
+</div>

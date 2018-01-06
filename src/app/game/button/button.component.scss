@@ -1,0 +1,20 @@
+:host {
+  display: inline-block;
+  border-top-left-radius: 9999px;
+  overflow: hidden;
+  height: 0;
+}
+
+.button {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-shadow: none;
+}

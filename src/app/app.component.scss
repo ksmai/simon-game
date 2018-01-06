@@ -1,4 +1,58 @@
+@import '../styles/colors';
+
 :host {
-  $color: blue;
-  color: $color;
+  display: block;
+  width: 100%;
+  max-width: 95%;
+  height: 100%;
+  margin: auto;
+}
+
+.board {
+  margin: 50px auto;
+  width: 100%;
+  height: 0;
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 100%;
+  border-radius: 50%;
+  background-color: $board-color;
+}
+
+.simon-button {
+  width: 41%;
+  padding-bottom: 41%;
+  position: absolute;
+
+  &--0 {
+    top: 6%;
+    left: 6%;
+  }
+
+  &--1 {
+    top: 6%;
+    right: 6%;
+    transform: rotate(90deg);
+  }
+
+  &--2 {
+    bottom: 6%;
+    left: 6%;
+    transform: rotate(270deg);
+  }
+
+  &--3 {
+    bottom: 6%;
+    right: 6%;
+    transform: rotate(180deg);
+  }
+}
+
+.simon-controller {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  padding-bottom: 50%;
 }

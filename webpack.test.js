@@ -25,7 +25,7 @@ module.exports = {
       test: /\.ts$/,
       use: ['awesome-typescript-loader', 'angular2-template-loader'],
     }, {
-      test: /\.(?:gif|png|jpe?g|svg|ttf|eof|woff2?)$/,
+      test: /\.(?:gif|png|jpe?g|svg|ttf|eof|woff2?|mp3)$/,
       use: 'null-loader',
     }],
   },
