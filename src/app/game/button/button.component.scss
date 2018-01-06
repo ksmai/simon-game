@@ -17,4 +17,15 @@
   padding: 0;
   outline: 0;
   box-shadow: none;
+  transition: filter .1s ease-in-out;
+  -webkit-tap-highlight-color: transparent;
+
+  :host(.enabled) &:hover {
+    filter: opacity(70%);
+  }
+
+  &--active,
+  :host(.enabled) &:active {
+    filter: brightness(250%);
+  }
 }

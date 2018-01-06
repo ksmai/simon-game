@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import 'rxjs/add/observable/zip';
-import 'rxjs/add/observable/interval';
 import 'rxjs/add/observable/combineLatest';
+import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/delay';
+import 'rxjs/add/operator/concatMap';
+import 'rxjs/add/operator/pairwise';
 
 import { Game } from '../../models/game';
 import { Color } from '../../models/color';
@@ -11,7 +13,7 @@ import { Color } from '../../models/color';
 @Injectable()
 export class GameService {
   private MAX_TURN = 20;
-  private DISPLAY_INTERVAL = 1000;
+  private DISPLAY_INTERVAL = 500;
   private game: Game;
   private hasWon$: BehaviorSubject<boolean>;
   private isOn$: BehaviorSubject<boolean>;
@@ -30,11 +32,14 @@ export class GameService {
   }
 
   getDisplayedColor(): Observable<Color | null> {
-    return Observable.zip(
-      this.displayedColor$.asObservable(),
-      Observable.interval(this.DISPLAY_INTERVAL),
-      (c: Color | null, i: number) => c,
-    );
+    return this.displayedColor$.asObservable()
+      .pairwise()
+      .concatMap(([prev, next]: [Color|null, Color|null]) => {
+        if (prev === null && next !== null) {
+          return Observable.of(next);
+        }
+        return Observable.of(next).delay(this.DISPLAY_INTERVAL);
+      });
   }
 
   getIsOn(): Observable<boolean> {
@@ -78,10 +83,14 @@ export class GameService {
   }
 
   toggleOn(isOn?: boolean): void {
+    const prevIsOn = this.isOn$.value;
     if (typeof isOn !== 'boolean') {
-      isOn = !this.isOn$.value;
+      isOn = !prevIsOn;
     }
     this.isOn$.next(isOn);
+    if (!prevIsOn && isOn) {
+      this.resetGame();
+    }
   }
 
   toggleStrictMode(isStrict?: boolean): void {
@@ -91,10 +100,17 @@ export class GameService {
     this.isStrictMode$.next(isStrict);
   }
 
+  resetGame(): void {
+    this.game.reset();
+    this.currentSequence$.next(this.game.sequence);
+    this.hasWon$.next(this.game.hasWon());
+    this.nextTurn();
+  }
+
   private handleWrongGuesses(): void {
+    this.currentGuesses = [];
     if (this.isStrictMode$.value) {
       this.resetGame();
-      this.nextTurn();
     } else {
       this.displayColors();
     }
@@ -112,15 +128,11 @@ export class GameService {
   }
 
   private displayColors(): void {
+    this.displayedColor$.next(Color.NONE);
     this.game.sequence.forEach((color: Color) => {
+      this.displayedColor$.next(Color.NONE);
       this.displayedColor$.next(color);
     });
     this.displayedColor$.next(null);
-  }
-
-  private resetGame(): void {
-    this.game.reset();
-    this.currentSequence$.next(this.game.sequence);
-    this.currentGuesses = [];
   }
 }
